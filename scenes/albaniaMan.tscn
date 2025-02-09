@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://chr4ri5sskpmv"]
+[gd_scene load_steps=3 format=3 uid="uid://irg6ru5tblct"]
 
-[ext_resource type="Texture2D" uid="uid://bdmtwgrhda7rf" path="res://assets/al.png" id="1_cnyqt"]
 [ext_resource type="Script" path="res://scripts/albaniaMan.gd" id="1_mqfsn"]
+[ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/Snail_Red.png" id="2_gfgj4"]
 
 [node name="albaniaMan" type="Node2D"]
-scale = Vector2(0.06, 0.06)
 script = ExtResource("1_mqfsn")
 
-[node name="albaniaTexture" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_cnyqt")
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -49.0
+offset_top = -20.0
+offset_right = 49.0
+offset_bottom = 20.0
+texture = ExtResource("2_gfgj4")
