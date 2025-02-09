@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://mn4te3wtsa2j"]
+
+[ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_f1t1x"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_f1t1x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

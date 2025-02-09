@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://chr4ri5sskpmv"]
+
+[ext_resource type="Texture2D" uid="uid://bdmtwgrhda7rf" path="res://assets/al.png" id="1_cnyqt"]
+[ext_resource type="Script" path="res://scripts/albaniaMan.gd" id="1_mqfsn"]
+
+[node name="albaniaMan" type="Node2D"]
+scale = Vector2(0.06, 0.06)
+script = ExtResource("1_mqfsn")
+
+[node name="albaniaTexture" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_cnyqt")
