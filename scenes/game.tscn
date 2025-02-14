@@ -1,17 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://mn4te3wtsa2j"]
+[gd_scene load_steps=3 format=3 uid="uid://mn4te3wtsa2j"]
 
 [ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_f1t1x"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uw3hp"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_f1t1x")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_mask = 3
 
-[node name="OuterWalls" type="CollisionPolygon2D" parent="OuterWalls"]
-polygon = PackedVector2Array(-6, 3, -2, 1085, 1919, 1088, 1922, 5, -131, -20, -137, -80, 1981, -64, 1991, 1164, -158, 1155, -129, 10)
+[node name="floor" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(775, 1080)
+shape = SubResource("WorldBoundaryShape2D_uw3hp")
+
+[node name="ceiling" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(776, 0)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_uw3hp")
+
+[node name="left" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(0, 500)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_uw3hp")
+
+[node name="right" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(1920, 500)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_uw3hp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

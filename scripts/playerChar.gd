@@ -23,25 +23,13 @@ func _ready() -> void:
 	yspeed =0;
 	
 	colour = rng.randi_range(0,1)
-	colour = 0 # TODO REMOVE make green
-	
-	if colour == 0: # green
-		$red.hide()
-	else:
-		$green.hide()
+	$green.hide() # make pc red
+		
 
 	
 func _physics_process(delta: float) -> void:
-
-	if colour == 0:
-		rotation_degrees += (velocity.y + velocity.x) /100
-	else:
-		rotation_degrees -= (velocity.y + velocity.x)/100
-		
 	
 	pressed = false;
-	
-
 	
 	if Input.is_action_pressed("up"):
 		pressed = true;
@@ -56,11 +44,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("right"):
 		pressed = true;
 		dir = 1
-		velocity.x = clamp(velocity.x + (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
+		rotation_degrees += 5
+		#velocity.x = clamp(velocity.x + (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
 	if Input.is_action_pressed("left"):
 		pressed = true;
 		dir = 3
-		velocity.x = clamp(velocity.x - (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
+		rotation_degrees -= 5
+		#velocity.x = clamp(velocity.x - (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
 
 	
 	if not pressed:
@@ -73,9 +63,10 @@ func _physics_process(delta: float) -> void:
 		if velocity.y < 0:
 			velocity.y = min(0, velocity.y + DECEL*delta)
 			
+	velocity = velocity.rotated(self.rotation)
+	velocity = -transform.x * velocity.length()
 
+	# ACTUAL MOVING
 	var collision_info = move_and_collide(velocity*delta)
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
-	
-	

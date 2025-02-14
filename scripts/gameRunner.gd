@@ -3,12 +3,14 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 var new_albanian =  preload("res://scenes/albaniaMan.tscn")
+var player_char = preload("res://scenes/playerChar.tscn")
 var dir = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Timer.start()
 	spawn_albanians()
+	spawn_player_char()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,6 +25,11 @@ func _physics_process(delta: float) -> void:
 		dir = 2
 	if Input.is_action_pressed("left"):
 		dir = 3
+	
+func spawn_player_char() -> void:
+	var playerCharInstance = player_char.instantiate();
+	playerCharInstance.position = Vector2(100, 100)
+	self.add_child(playerCharInstance)
 	
 func spawn_albanians() -> void:
 	var newAlbanianInstance = new_albanian.instantiate()
