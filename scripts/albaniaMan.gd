@@ -30,7 +30,7 @@ func _ready() -> void:
 	else:
 		$green.hide()
 
-	
+var just_collided; # only needed to identify as 'player char' for collisions
 func _physics_process(delta: float) -> void:
 
 	if colour == 0:
@@ -43,21 +43,21 @@ func _physics_process(delta: float) -> void:
 	
 
 	
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up1"):
 		pressed = true;
 		dir = 0
 		velocity.y = clamp(velocity.y - (ACCEL_Y * ACCEL * delta), -MAX_SPD, MAX_SPD)
 
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down1"):
 		pressed = true;
 		dir = 2
 		velocity.y = clamp(velocity.y + (ACCEL_Y * ACCEL * delta), -MAX_SPD, MAX_SPD)
 
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right1"):
 		pressed = true;
 		dir = 1
 		velocity.x = clamp(velocity.x + (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left1"):
 		pressed = true;
 		dir = 3
 		velocity.x = clamp(velocity.x - (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
@@ -73,9 +73,16 @@ func _physics_process(delta: float) -> void:
 		if velocity.y < 0:
 			velocity.y = min(0, velocity.y + DECEL*delta)
 			
-
+	# ACTUAL MOVING
 	var collision_info = move_and_collide(velocity*delta)
-	if collision_info:
+	if collision_info: # if there has been a COLLISION
+		
 		velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
-	
+		just_collided = true;
+				
+		var collision_body = collision_info.get_collider();
+		if("just_collided" in collision_body): # if collided NOT with the wall
+			collision_body.just_collided = true
+			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
+
 	

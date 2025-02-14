@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqumse0yhjv56"]
+[gd_scene load_steps=5 format=3 uid="uid://b1aaaw1fmkyrj"]
 
 [ext_resource type="Script" path="res://scripts/playerChar.gd" id="1_q1p7e"]
 [ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/Snail_Red.png" id="2_7pfto"]

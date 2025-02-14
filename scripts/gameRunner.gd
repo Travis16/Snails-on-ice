@@ -10,7 +10,8 @@ var dir = 2
 func _ready() -> void:
 	$Timer.start()
 	spawn_albanians()
-	spawn_player_char()
+	spawn_player_char(1)
+	spawn_player_char(2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,9 +27,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left"):
 		dir = 3
 	
-func spawn_player_char() -> void:
+func spawn_player_char(id) -> void:
 	var playerCharInstance = player_char.instantiate();
-	playerCharInstance.position = Vector2(100, 100)
+	playerCharInstance.id = id
+	playerCharInstance.position = Vector2(100+id*200, 100+id*200)
 	self.add_child(playerCharInstance)
 	
 func spawn_albanians() -> void:
