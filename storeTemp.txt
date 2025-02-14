@@ -1,0 +1,37 @@
+PLAUYER GD
+
+
+
+@onready var wade_sound = $WadeSound
+@onready var blow_sound = $BlowSound
+@onready var breathe_sound = $BreatheSound
+@onready var surface_sound = $SurfaceSound
+@onready var splash = preload("res://objects/splash.tscn")
+const ACCEL = 1000
+const DECEL = 300
+const MAX_SPD = 200
+const GRAV = 1000
+const BUOYANCY = 1500
+const SHOOTUP_BUOYANCY = 2000
+const DEPTH = 150
+var force = 0
+var breathingin = false
+var player_bubble #the player's bubble they need to look after, directly accessible here
+var above_water = false
+
+
+
+
+	if direction:
+		velocity.x = clamp(velocity.x + direction * ACCEL * delta, -MAX_SPD, MAX_SPD)
+	else:
+		if velocity.x > 0:
+			velocity.x = max(0, velocity.x - DECEL*delta)
+		if velocity.x < 0:
+			velocity.x = min(0, velocity.x + DECEL*delta)
+	
+
+
+	move_and_slide()
+	position.x = clampf(position.x, -Global.wall_limit, Global.wall_limit)
+	#$Label.text = states.keys()[state]

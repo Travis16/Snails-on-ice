@@ -28,16 +28,16 @@ func spawn_albanians() -> void:
 	var newAlbanianInstance = new_albanian.instantiate()
 	if dir == 0:
 		newAlbanianInstance.position.x = rng.randf_range(0, 1000)
-		newAlbanianInstance.position.y = 800
+		newAlbanianInstance.position.y = 1000
 	if dir == 1:
 		newAlbanianInstance.position.y = rng.randf_range(0, 500)
-		newAlbanianInstance.position.x = -100
+		newAlbanianInstance.position.x = 100
 	if dir == 2:
 		newAlbanianInstance.position.x = rng.randf_range(0, 1000)
-		newAlbanianInstance.position.y = -100
+		newAlbanianInstance.position.y = 100
 	if dir == 3:
 		newAlbanianInstance.position.y = rng.randf_range(0, 500)
-		newAlbanianInstance.position.x = 1300
+		newAlbanianInstance.position.x = 1400
 	
 	newAlbanianInstance.dir = dir
 	self.add_child(newAlbanianInstance)

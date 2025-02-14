@@ -6,6 +6,12 @@
 script = ExtResource("1_f1t1x")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 2.0
+
+[node name="OuterWalls" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="OuterWalls" type="CollisionPolygon2D" parent="OuterWalls"]
+polygon = PackedVector2Array(-6, 3, -2, 1085, 1919, 1088, 1922, 5, -131, -20, -137, -80, 1981, -64, 1991, 1164, -158, 1155, -129, 10)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
