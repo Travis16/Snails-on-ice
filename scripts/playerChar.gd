@@ -6,6 +6,7 @@ var BRAKE_FORCE = 600;
 var MAX_SPD = 1000;
 var DECEL = 200; 
 const ROTATION_SPEED = 3;
+const INPUT_DELAY = 0.5; # starts at 1, it is an inverse scale factor (ie 0.5 is double delay)
 
 var rng = RandomNumberGenerator.new()
 var colour;
@@ -62,13 +63,13 @@ func _physics_process(delta: float) -> void:
 	if just_collided: # if just collided	
 		bounce_lerp += delta # will take one whole second 
 		#print("bouncing progress: ", bounce_lerp, " with destination velocity of ", forward_direction*speed)
-		velocity = velocity.lerp(forward_direction*speed, bounce_lerp*0.01)
+		velocity = velocity.lerp(forward_direction*speed, bounce_lerp*delta*INPUT_DELAY)
 		if bounce_lerp >= BOUNCE_DURATION/0.1: # once finished lerping
 			just_collided = false;
 			#print("finished colliding")
 			bounce_lerp = 0
 	else:  # if normal operation
-		velocity = forward_direction * speed;
+		velocity = velocity.lerp(forward_direction * speed, delta*INPUT_DELAY);
 
 	# ACTUAL MOVING
 	var collision_info = move_and_collide(velocity*delta)
@@ -85,4 +86,4 @@ func _physics_process(delta: float) -> void:
 			collision_body.velocity = velocity;
 			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
 
-		speed = 0
+		speed = 0 # reset speed of bike to 0
