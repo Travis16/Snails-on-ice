@@ -10,7 +10,7 @@ height = 62.0
 
 [node name="playerChar" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_q1p7e")
 
 [node name="red" type="TextureRect" parent="."]

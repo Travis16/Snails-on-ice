@@ -9,8 +9,8 @@ radius = 15.0
 height = 62.0
 
 [node name="albaniaMan" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_mqfsn")
 
 [node name="red" type="TextureRect" parent="."]

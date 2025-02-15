@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://mn4te3wtsa2j"]
+[gd_scene load_steps=4 format=3 uid="uid://mn4te3wtsa2j"]
 
 [ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_f1t1x"]
+[ext_resource type="Texture2D" uid="uid://b0c3pghgyucnd" path="res://assets/aq.png" id="2_0taa4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uw3hp"]
 
@@ -31,5 +32,21 @@ shape = SubResource("WorldBoundaryShape2D_uw3hp")
 position = Vector2(1920, 500)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_uw3hp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -123.0
+offset_top = -102.0
+offset_right = 3514.0
+offset_bottom = 2323.0
+scale = Vector2(0.559999, 0.559999)
+texture = ExtResource("2_0taa4")
+
+[node name="antarctica" type="StaticBody2D" parent="."]
+position = Vector2(236, 185)
+scale = Vector2(0.8, 0.8)
+collision_mask = 7
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="antarctica"]
+polygon = PackedVector2Array(43, 223, 204, 436, 161, 638, 312, 857, 483, 924, 896, 944, 900, 1164, 1191, 1153, 1459, 881, 1538, 457, 1428, 368, 1399, 49, 1106, -80, 730, -153, 609, -80, 550, 3, 522, 215, 268, 275, -36, 56, -76, 266, -273, 124, -168, -10, 288, 181, 479, 96, 518, -207, 810, -206, 1051, -166, 1407, -126, 1521, 79, 1553, 322, 1561, 467, 1569, 630, 1569, 929, 1553, 1016, 1309, 1106, 1188, 1217, 834, 1219, 782, 1024, 432, 1024, 250, 919, 27, 695, 9, 339, -26, 192, 40, 211)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
