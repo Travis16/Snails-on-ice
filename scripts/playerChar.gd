@@ -18,9 +18,9 @@ var id
 func _ready() -> void:
 	colour = rng.randi_range(0,1)
 	if self.id == 1:
-		$green.hide() # p1 is green
+		$cyan.hide() # p1 is red
 	if self.id == 2:
-		$red.hide() # p2 is red
+		$red.hide() # p2 is cyan
 
 		
 var speed = 0;
@@ -45,45 +45,27 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("down"+str(id)):
 		# Brake 'backwards'
 		speed = clamp(speed - (BRAKE_FORCE * delta), -MAX_SPD, MAX_SPD)
-	else: # Decceleration
+	else: # Decceleration by nature
 		if speed > 0:
 			speed = max(0, speed - (DECEL * delta))
 		else:
 			speed = min(0, speed + (DECEL * delta))
 
-	if speed > 0:
+	# Slight decceleration upon turning
+	if speed > 0: 
 		speed = max(0, speed - abs(rotation_direction))
 	else:
 		speed = min(0, speed + abs(rotation_direction))
 		
-	# Clamp 
 	# Compute direction based on rotation
 	var forward_direction = Vector2.RIGHT.rotated(rotation)
-
-	if just_collided: # if just collided	
-		bounce_lerp += delta # will take one whole second 
-		#print("bouncing progress: ", bounce_lerp, " with destination velocity of ", forward_direction*speed)
-		velocity = velocity.lerp(forward_direction*speed, bounce_lerp*delta*INPUT_DELAY)
-		if bounce_lerp >= BOUNCE_DURATION/0.1: # once finished lerping
-			just_collided = false;
-			#print("finished colliding")
-			bounce_lerp = 0
-	else:  # if normal operation
-		velocity = velocity.lerp(forward_direction * speed, delta*INPUT_DELAY);
-
+	velocity = velocity.lerp(forward_direction*speed, delta*INPUT_DELAY)
+	
 	# ACTUAL MOVING
 	var collision_info = move_and_collide(velocity*delta)
 	if collision_info: # if there has been a COLLISION
-		just_collided = true;
-		#print("just collided")
-		bounce_lerp = 0; # this will reset bounce_lerp to 0
 		velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
-		
-		var collision_body = collision_info.get_collider();
-		if("just_collided" in collision_body): # if collided NOT with the wall
-			collision_body.just_collided = true
-			if ("bounce_lerp" in collision_body): collision_body.bounce_lerp = 0; # if player character
-			collision_body.velocity = velocity;
-			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
-
 		speed = 0 # reset speed of bike to 0
+		var collision_body = collision_info.get_collider();
+		if("MAX_SPD" in collision_body): # if collided NOT with the wall, but another snail
+			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY

@@ -21,7 +21,8 @@ offset_right = 49.0
 offset_bottom = 20.0
 texture = ExtResource("2_7pfto")
 
-[node name="green" type="TextureRect" parent="."]
+[node name="cyan" type="TextureRect" parent="."]
+modulate = Color(0.356863, 0.67451, 1, 1)
 texture_filter = 1
 offset_left = -49.0
 offset_top = -20.0

@@ -30,25 +30,21 @@ func _ready() -> void:
 	else:
 		$green.hide()
 
-var just_collided; # only needed to identify as 'player char' for collisions
-var random_movement = Vector2(0, 0);
-
+const NPC_DECEL = 500;
 func _physics_process(delta: float) -> void:
 
-	if random_movement == Vector2(0, 0):
-		random_movement = Vector2(randf_range(-200, 200), randf_range(-200, 200))
+	if velocity == Vector2(0, 0):
+		velocity = Vector2(randf_range(-600, 600), randf_range(-600, 600))
 	else:
-		random_movement += Vector2(-random_movement.x/10, -random_movement.y/10)
+		velocity -= Vector2(velocity.x/NPC_DECEL, velocity.y/NPC_DECEL)
 	if colour == 0:
 		rotation_degrees += (velocity.y + velocity.x) /100
 	else:
 		rotation_degrees -= (velocity.y + velocity.x)/100
 		
-	
+		'''
 	pressed = false;
 	
-
-	'''
 	if Input.is_action_pressed("up1"):
 		pressed = true;
 		dir = 0
@@ -67,8 +63,7 @@ func _physics_process(delta: float) -> void:
 		pressed = true;
 		dir = 3
 		velocity.x = clamp(velocity.x - (ACCEL_X * ACCEL * delta), -MAX_SPD, MAX_SPD)
-'''
-	velocity = random_movement;
+
 	
 	if not pressed:
 		if velocity.x > 0:
@@ -79,17 +74,16 @@ func _physics_process(delta: float) -> void:
 			velocity.y = max(0, velocity.y - DECEL*delta)
 		if velocity.y < 0:
 			velocity.y = min(0, velocity.y + DECEL*delta)
-			
+	'''
+	
 	# ACTUAL MOVING
 	var collision_info = move_and_collide(velocity*delta)
 	if collision_info: # if there has been a COLLISION
 		
 		velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
-		just_collided = true;
 				
 		var collision_body = collision_info.get_collider();
-		if("just_collided" in collision_body): # if collided NOT with the wall
-			collision_body.just_collided = true
+		if("MAX_SPD" in collision_body): # if collided NOT with the wall
 			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
 
 	
