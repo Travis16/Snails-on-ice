@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-const ELASTICITY = 0.8
+const ELASTICITY = 0.9
 var ACCEL = 800;
 var BRAKE_FORCE = 600;
 var MAX_SPD = 1000;
 var DECEL = 200; 
 const ROTATION_SPEED = 3;
 const INPUT_DELAY = 0.5; # starts at 1, it is an inverse scale factor (ie 0.5 is double delay)
+
+var boost_factor = 1; # this is a factor which will boost enemies that you hit
 
 var rng = RandomNumberGenerator.new()
 var colour;
@@ -51,6 +53,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			speed = min(0, speed + (DECEL * delta))
 
+	if Input.is_action_pressed("boost"):
+		boost_factor = 3;
+	else:
+		boost_factor = 1
 	# Slight decceleration upon turning
 	if speed > 0: 
 		speed = max(0, speed - abs(rotation_direction))
@@ -68,4 +74,4 @@ func _physics_process(delta: float) -> void:
 		speed = 0 # reset speed of bike to 0
 		var collision_body = collision_info.get_collider();
 		if("MAX_SPD" in collision_body): # if collided NOT with the wall, but another snail
-			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY
+			collision_body.velocity = velocity.bounce(collision_info.get_normal()) * ELASTICITY * boost_factor
