@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://chr4ri5sskpmv"]
+
+[ext_resource type="Script" path="res://scripts/playerchar.gd" id="1_cf2yr"]
+[ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/Snail_Red.png" id="2_2dm80"]
+[ext_resource type="Texture2D" uid="uid://cc05tui820eh2" path="res://assets/Snail_Green.png" id="3_k5x08"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0tg4"]
+radius = 13.0
+height = 56.0
+
+[node name="playerchar" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_cf2yr")
+
+[node name="red" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -49.0
+offset_top = -20.0
+offset_right = 49.0
+offset_bottom = 20.0
+texture = ExtResource("2_2dm80")
+
+[node name="green" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -49.0
+offset_top = -20.0
+offset_right = 49.0
+offset_bottom = 20.0
+texture = ExtResource("3_k5x08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u0tg4")

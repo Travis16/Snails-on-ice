@@ -9,14 +9,13 @@ const min_snail_force = 0
 var forward_direction = Vector2.RIGHT
 var latest_collision
 var id
-var input_delay = 0.1
+const input_delay = 0.1
 var accel = 4000
-var brake = 6000
+const bounce_force = 0.8
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	colour = rng.randi_range(0,1)
-	if colour == 0:
+	if id == "1":
 		$red.hide()
 	else:
 		$green.hide()
@@ -28,9 +27,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("up" + id):
 		snail_force = clamp(snail_force + (accel * delta), min_snail_force, max_snail_force)
 		velocity = velocity.lerp(forward_direction*snail_force, delta*input_delay)
-	elif Input.is_action_pressed("down" + id):
-		snail_force = clamp(snail_force - (brake * delta), min_snail_force, max_snail_force)
-		velocity = velocity.lerp(forward_direction*snail_force, delta*input_delay)
 	else:
 		snail_force = min_snail_force
 		velocity = velocity.lerp(Vector2(0,0), delta * 0.5)
@@ -41,11 +37,19 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("left" + id):
 		self.rotation_degrees -= rotation_snail_force
 		
+	var collision_info = move_and_collide(velocity*delta)
+	
+	if collision_info:
+		snail_force = 0
+		velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
+		
+		var what_was_hit = collision_info.get_collider()
+		
+		if "id" in what_was_hit:
+			what_was_hit.velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
 		
 	
 	
 	
 	
 	
-	
-	var collision_info = move_and_collide(velocity*delta)

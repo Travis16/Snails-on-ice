@@ -1,7 +1,7 @@
 extends Node2D
 
 var rng = RandomNumberGenerator.new()
-var player_scene =  preload("res://scenes/albaniaMan.tscn")
+var player_scene =  preload("res://scenes/playerchar.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
