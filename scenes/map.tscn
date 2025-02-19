@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtnm20pfyqmh0"]
+
+[ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/Snail_Red.png" id="1_1ama4"]
+
+[node name="Map" type="Node2D"]
+
+[node name="SnailRed" type="Sprite2D" parent="."]
+position = Vector2(27, 41)
+texture = ExtResource("1_1ama4")
+
+[node name="SnailRed2" type="Sprite2D" parent="."]
+position = Vector2(1117, 601)
+texture = ExtResource("1_1ama4")
