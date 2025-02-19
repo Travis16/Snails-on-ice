@@ -12,6 +12,9 @@ var id
 const input_delay = 0.1
 var accel = 4000
 const bounce_force = 0.8
+var slistance = 200
+var distance_moved = 0
+var slime_scene =  preload("res://scenes/trail_spot.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,6 +50,19 @@ func _physics_process(delta: float) -> void:
 		
 		if "id" in what_was_hit:
 			what_was_hit.velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
+	
+	distance_moved += velocity.length()
+	
+	if distance_moved > slistance:
+		distance_moved = 0
+		var newslime = slime_scene.instantiate()
+		newslime.position.x = self.position.x
+		newslime.position.y = self.position.y
+		if id == "1":
+			newslime.colour = 1
+		else:
+			newslime.colour = 2
+		self.get_parent().add_child(newslime)
 		
 	
 	

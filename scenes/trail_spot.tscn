@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://bcknumo731e1u"]
+[gd_scene load_steps=3 format=3 uid="uid://bcknumo731e1u"]
+
+[ext_resource type="Script" path="res://scripts/trail_spot.gd" id="1_0x6hd"]
+[ext_resource type="Texture2D" uid="uid://capt1tuwdw0nf" path="res://assets/white_circle.png" id="1_a5ox8"]
 
 [node name="TrailSpot" type="Node2D"]
+z_index = -1
+script = ExtResource("1_0x6hd")
+
+[node name="slime" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("1_a5ox8")
