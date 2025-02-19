@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var rng = RandomNumberGenerator.new()
 var new_albanian =  preload("res://scenes/albaniaMan.tscn")
 var dir = 2
