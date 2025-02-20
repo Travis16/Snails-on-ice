@@ -15,7 +15,7 @@ const bounce_force = 0.8
 var slistance = 50
 var distance_moved = 0
 var slime_scene =  preload("res://scenes/trail_spot.tscn")
-const max_hp = 1
+const max_hp = 5
 var hp = max_hp
 var invincible = 0
 
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	print(bodies)
 	for body in bodies:
 		if "creator" in body.get_parent():
-			if  body.get_parent().creator != id:
+			if body.get_parent().creator != id and body.get_parent().get_node("slime").modulate.a > 0.25:
 				if invincible == 0:
 					hp -= 1
 					invincible = 60
