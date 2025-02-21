@@ -26,10 +26,8 @@ func _ready() -> void:
 	else:
 		$green.hide()
 
-	
-func _physics_process(delta: float) -> void:
+func manage_speed(delta: float):
 	forward_direction = Vector2.RIGHT.rotated(rotation)
-	
 	if Input.is_action_pressed("up" + id):
 		snail_force = clamp(snail_force + (accel * delta), min_snail_force, max_snail_force)
 		velocity = velocity.lerp(forward_direction*snail_force, delta*input_delay)
@@ -37,12 +35,14 @@ func _physics_process(delta: float) -> void:
 		snail_force = min_snail_force
 		velocity = velocity.lerp(Vector2(0,0), delta * 0.5)
 		
-		
+
+func manage_direction():
 	if Input.is_action_pressed("right" + id):
 		self.rotation_degrees += rotation_snail_force
 	if Input.is_action_pressed("left" + id):
 		self.rotation_degrees -= rotation_snail_force
 		
+func manage_collision(delta:float):
 	var collision_info = move_and_collide(velocity*delta)
 	
 	if collision_info:
@@ -51,40 +51,47 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
 		if "id" in what_was_hit:
 			what_was_hit.velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
+
+func spawn_slime():
+	var newslime = slime_scene.instantiate()
+	newslime.position.x = self.position.x
+	newslime.position.y = self.position.y
+	if id == "1":
+		newslime.colour = 1
+	else:
+		newslime.colour = 2
+	newslime.creator = id
+	self.get_parent().add_child(newslime)
 	
-	distance_moved += velocity.length()
-	
-	if distance_moved > slistance:
-		distance_moved = 0
-		var newslime = slime_scene.instantiate()
-		newslime.position.x = self.position.x
-		newslime.position.y = self.position.y
-		if id == "1":
-			newslime.colour = 1
-		else:
-			newslime.colour = 2
-		newslime.creator = id
-		self.get_parent().add_child(newslime)
-		
+func check_slime():
 	var bodies = $trail_collider.get_overlapping_areas()
-	print(bodies)
 	for body in bodies:
 		if "creator" in body.get_parent():
 			if body.get_parent().creator != id and body.get_parent().get_node("slime").modulate.a > 0.25:
 				if invincible == 0:
 					hp -= 1
 					invincible = 60
-		
 	
+
+	
+func _physics_process(delta: float) -> void:
+	manage_speed(delta)
+		
+	manage_direction()
+	
+	manage_collision(delta)
+	
+	distance_moved += velocity.length()
+	if distance_moved > slistance:
+		distance_moved = 0
+		spawn_slime()	
+	
+	check_slime()
+		
 	if invincible > 0:
 		invincible -= 1
 		
 	if hp == 0:
 		self.queue_free()
-		
-	print(hp)
-
-	
-	
 	
 	
