@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	distance_moved += velocity.length()
 	if distance_moved > slistance:
 		distance_moved = 0
-		spawn_slime()	
+		spawn_slime()
 	
 	check_slime()
 		

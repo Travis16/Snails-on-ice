@@ -3,6 +3,7 @@ extends Node
 var rng = RandomNumberGenerator.new()
 var colour
 var creator
+var wait = 120
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,10 +19,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	$slime.modulate.a -= 0.01
-	self.scale = self.scale * 0.999
-		
-	if $slime.modulate.a < 0:
-		self.queue_free()
+	if wait > 0:
+		wait -= 1
+	else:
+		$slime.modulate.a -= 0.01
+		self.scale = self.scale * 0.999
+			
+		if $slime.modulate.a < 0:
+			self.queue_free()
 		
 		
