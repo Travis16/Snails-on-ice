@@ -9,8 +9,8 @@ radius = 13.0
 height = 56.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5nvt"]
-radius = 20.0
-height = 86.0
+radius = 12.0
+height = 50.0
 
 [node name="playerchar" type="CharacterBody2D"]
 collision_mask = 7
@@ -40,5 +40,6 @@ shape = SubResource("CapsuleShape2D_u0tg4")
 [node name="trail_collider" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trail_collider"]
+position = Vector2(-4, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5nvt")
