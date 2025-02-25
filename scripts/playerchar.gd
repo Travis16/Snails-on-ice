@@ -23,8 +23,11 @@ var invincible = 0
 func _ready() -> void:
 	if id == "1":
 		$red.hide()
+		$green.set_name("sprite")
 	else:
 		$green.hide()
+		$red.set_name("sprite")
+	
 
 func manage_speed(delta: float):
 	forward_direction = Vector2.RIGHT.rotated(rotation)
@@ -71,6 +74,8 @@ func check_slime():
 				if invincible == 0:
 					hp -= 1
 					invincible = 60
+					$sprite.modulate.g = 0.1
+					$sprite.modulate.b = 0.1
 	
 
 	
@@ -90,6 +95,10 @@ func _physics_process(delta: float) -> void:
 		
 	if invincible > 0:
 		invincible -= 1
+	else:
+		$sprite.modulate.g = 1
+		$sprite.modulate.b = 1
+		
 		
 	if hp == 0:
 		self.queue_free()
