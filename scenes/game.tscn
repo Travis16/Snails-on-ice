@@ -7,6 +7,28 @@
 [node name="game" type="Node2D"]
 script = ExtResource("1_f1t1x")
 
+[node name="p2hp" type="Label" parent="."]
+offset_left = 50.0
+offset_right = 156.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.976471, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "5"
+
+[node name="p1hp" type="Label" parent="."]
+offset_left = 1778.0
+offset_top = 10.0
+offset_right = 1884.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "5"
+horizontal_alignment = 2
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 

@@ -9,6 +9,7 @@ func _ready() -> void:
 	player1.position.x = randf_range(100,1800)
 	player1.position.y = randf_range(100,900)
 	player1.id = "1"
+	player1.name="p1"
 	self.add_child(player1)
 	
 	
@@ -16,6 +17,7 @@ func _ready() -> void:
 	player2.position.x = randf_range(100,1800)
 	player2.position.y = randf_range(100,900)
 	player2.id = "2"
+	player2.name="p2"
 	self.add_child(player2)
 	
 	
@@ -25,5 +27,13 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	pass	
+	
+	if self.has_node("p1"):
+		$p1hp.text = str($p1.hp)
+	else:
+		$p1hp.text = "Dead"
+	if self.has_node("p2"):
+		$p2hp.text = str($p2.hp)
+	else:
+		$p2hp.text = "Dead"
 	
