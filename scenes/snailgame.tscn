@@ -1,23 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://mn4te3wtsa2j"]
+[gd_scene load_steps=4 format=3 uid="uid://mn4te3wtsa2j"]
 
-[ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_f1t1x"]
+[ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_kkof0"]
+[ext_resource type="FontFile" uid="uid://y8y1q7nhnvk4" path="res://assets/fonts/tronStyle.ttf" id="2_dnfc7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8guhd"]
 
-[node name="game" type="Node2D"]
-script = ExtResource("1_f1t1x")
+[node name="snailgame" type="Node2D"]
+script = ExtResource("1_kkof0")
 
 [node name="p2hp" type="Label" parent="."]
+z_index = 10
 offset_left = 50.0
 offset_right = 156.0
 offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.976471, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 96
 text = "5"
 
 [node name="p1hp" type="Label" parent="."]
+z_index = 10
 offset_left = 1541.0
 offset_top = 10.0
 offset_right = 1884.0
@@ -25,12 +29,14 @@ offset_bottom = 147.0
 theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 96
 text = "5"
 horizontal_alignment = 2
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="deathTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -54,4 +60,23 @@ shape = SubResource("WorldBoundaryShape2D_8guhd")
 position = Vector2(960, 1080)
 shape = SubResource("WorldBoundaryShape2D_8guhd")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Labels" type="Node" parent="."]
+
+[node name="game_over" type="Label" parent="Labels"]
+z_index = 10
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 144
+
+[connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]
