@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://mn4te3wtsa2j"]
+[gd_scene load_steps=4 format=3 uid="uid://mn4te3wtsa2j"]
 
 [ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_f1t1x"]
+[ext_resource type="Script" path="res://scripts/camscript.gd" id="2_8ydak"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8guhd"]
 
@@ -41,7 +42,7 @@ rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_8guhd")
 
 [node name="Right" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(1920, 540)
+position = Vector2(3840, 540)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_8guhd")
 
@@ -51,7 +52,10 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_8guhd")
 
 [node name="Bottom" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(960, 1080)
+position = Vector2(960, 2160)
 shape = SubResource("WorldBoundaryShape2D_8guhd")
+
+[node name="maincam" type="Camera2D" parent="."]
+script = ExtResource("2_8ydak")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
