@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcknumo731e1u"]
+[gd_scene load_steps=4 format=3 uid="uid://cyq8tsu5m67se"]
 
 [ext_resource type="Script" path="res://scripts/trail_spot.gd" id="1_0x6hd"]
 [ext_resource type="Texture2D" uid="uid://capt1tuwdw0nf" path="res://assets/white_circle.png" id="1_a5ox8"]

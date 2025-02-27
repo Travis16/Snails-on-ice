@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://mn4te3wtsa2j"]
+
+[ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_kkof0"]
+[ext_resource type="Script" path="res://scripts/camscript.gd" id="2_8ydak"]
+[ext_resource type="FontFile" uid="uid://y8y1q7nhnvk4" path="res://assets/fonts/tronStyle.ttf" id="2_dnfc7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8guhd"]
+
+[node name="snailgame" type="Node2D"]
+script = ExtResource("1_kkof0")
+
+[node name="deathTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="OuterWalls" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Left" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(0, 540)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_8guhd")
+
+[node name="Right" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(3840, 540)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_8guhd")
+
+[node name="Top" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(960, 0)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_8guhd")
+
+[node name="Bottom" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(960, 2160)
+shape = SubResource("WorldBoundaryShape2D_8guhd")
+
+[node name="maincam" type="Camera2D" parent="."]
+script = ExtResource("2_8ydak")
+
+[node name="Labels" type="Control" parent="maincam"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="game_over" type="Label" parent="maincam/Labels"]
+z_index = 10
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 144
+
+[node name="p2hp" type="Label" parent="maincam/Labels"]
+z_index = 10
+offset_left = -768.0
+offset_top = -339.0
+offset_right = -662.0
+offset_bottom = -202.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.976471, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 96
+text = "5"
+
+[node name="p1hp" type="Label" parent="maincam/Labels"]
+z_index = 10
+offset_left = 485.0
+offset_top = -344.0
+offset_right = 828.0
+offset_bottom = -207.0
+theme_override_colors/font_color = Color(0, 0.882353, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dnfc7")
+theme_override_font_sizes/font_size = 96
+text = "5"
+horizontal_alignment = 2
+
+[connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]
