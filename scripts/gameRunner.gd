@@ -11,7 +11,7 @@ var gui_labels
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	gui_labels = get_node("maincam/Labels")
+	gui_labels = get_node("Labels")
 	gui_labels.get_node("game_over").hide()
 	var player1 = player_scene.instantiate()
 	player1.position.x = randf_range(100,1800)
