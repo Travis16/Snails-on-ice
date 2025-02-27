@@ -16,7 +16,7 @@ const bounce_force = 0.8
 var slistance = 50 # Space between slime trail circles
 var distance_moved = 0
 var slime_scene =  preload("res://scenes/trail_spot.tscn")
-const max_hp = 5
+const max_hp = 1 # Decreased for the sake of testing
 var hp = max_hp
 var invincible = 0
 

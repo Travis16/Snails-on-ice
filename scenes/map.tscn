@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtnm20pfyqmh0"]
+[gd_scene load_steps=5 format=3 uid="uid://dtnm20pfyqmh0"]
 
 [ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/Snail_Red.png" id="1_1ama4"]
+[ext_resource type="Texture2D" uid="uid://bbo5g02ddt6pc" path="res://assets/Snail_Orange.png" id="2_h7t16"]
+[ext_resource type="Texture2D" uid="uid://cc05tui820eh2" path="res://assets/Snail_Green.png" id="3_kds0j"]
+[ext_resource type="Texture2D" uid="uid://dhjvd0tvdf1qr" path="res://assets/Snail_Blue.png" id="4_rjvcd"]
 
 [node name="Map" type="Node2D"]
 
@@ -11,3 +14,15 @@ texture = ExtResource("1_1ama4")
 [node name="SnailRed2" type="Sprite2D" parent="."]
 position = Vector2(1117, 601)
 texture = ExtResource("1_1ama4")
+
+[node name="SnailOrange" type="Sprite2D" parent="."]
+position = Vector2(27, 51)
+texture = ExtResource("2_h7t16")
+
+[node name="SnailGreen" type="Sprite2D" parent="."]
+position = Vector2(27, 61)
+texture = ExtResource("3_kds0j")
+
+[node name="SnailBlue" type="Sprite2D" parent="."]
+position = Vector2(27, 71)
+texture = ExtResource("4_rjvcd")

@@ -5,6 +5,7 @@ var player_scene =  preload("res://scenes/playerchar.tscn")
 var isdead = false
 signal game_restart
 @onready var death_timer: Timer = $deathTimer
+@export var target: Node # This could help patch the failed restart bug
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,12 +53,12 @@ func _death(player) -> void:
 	isdead = true
 	$Labels/game_over.text = "%s Wins!" % player.displayName # This line never needs to change as long as the function call is ordered properly
 	$Labels/game_over.show()
-	print("Death registered")
+	print(str(Time.get_time_string_from_system()) + ": Death registered")
 	death_timer.start()
 	
 
 func _on_death_timer_timeout() -> void:
-	print("Timer complete")
-	game_restart.emit()
-	print("game restart emitted")
-	self.queue_free()
+	print(str(Time.get_time_string_from_system()) + ": Timer complete")
+	game_restart.emit() # This emit takes code flow away from self.queue_free() and puts it in mainmenu.gd, meaning that it isn't ran until after a new snailgame is created, resulting in the name change.
+	print(str(Time.get_time_string_from_system()) + ": game restart emitted")
+	self.queue_free() # One possible band-aid fix would be to rename any node called "snailgame2" back to "snailgame", as the old instance will be cleared after this line is executed.
