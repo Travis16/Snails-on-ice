@@ -9,10 +9,6 @@
 [node name="snailgame" type="Node2D"]
 script = ExtResource("1_kkof0")
 
-[node name="deathTimer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
 [node name="OuterWalls" type="StaticBody2D" parent="."]
 collision_layer = 2
 
@@ -83,5 +79,3 @@ horizontal_alignment = 2
 
 [node name="maincam" type="Camera2D" parent="."]
 script = ExtResource("2_8ydak")
-
-[connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]

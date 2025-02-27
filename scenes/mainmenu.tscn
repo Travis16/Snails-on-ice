@@ -4,3 +4,9 @@
 
 [node name="mainmenu" type="Node2D"]
 script = ExtResource("1_s02oh")
+
+[node name="deathTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="deathTimer" to="." method="_on_deathtimer_timeout"]

@@ -3,9 +3,6 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 var player_scene =  preload("res://scenes/playerchar.tscn")
 var isdead = false
-signal game_restart
-@onready var death_timer: Timer = $deathTimer
-@export var target: Node # This could help patch the failed restart bug
 var gui_labels
 
 # Called when the node enters the scene tree for the first time.
@@ -56,11 +53,7 @@ func _death(player) -> void:
 	gui_labels.get_node("game_over").text = "%s Wins!" % player.displayName # This line never needs to change as long as the function call is ordered properly
 	gui_labels.get_node("game_over").show()
 	print(str(Time.get_time_string_from_system()) + ": Death registered")
-	death_timer.start()
 	
-
-func _on_death_timer_timeout() -> void:
-	print(str(Time.get_time_string_from_system()) + ": Timer complete")
-	game_restart.emit() # This emit takes code flow away from self.queue_free() and puts it in mainmenu.gd, meaning that it isn't ran until after a new snailgame is created, resulting in the name change.
-	print(str(Time.get_time_string_from_system()) + ": game restart emitted")
-	self.queue_free() # One possible band-aid fix would be to rename any node called "snailgame2" back to "snailgame", as the old instance will be cleared after this line is executed.
+	# Changed - because we know it will have a parent (mainmenu).
+	get_parent().get_node("deathTimer").start()
+	
