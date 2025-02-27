@@ -20,6 +20,7 @@ const max_hp = 1 # Decreased for the sake of testing
 var hp = max_hp
 var invincible = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if id == "1":
@@ -55,6 +56,9 @@ func manage_collision(delta:float):
 		velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
 		if "id" in what_was_hit:
 			what_was_hit.velocity = velocity.bounce(collision_info.get_normal()) * bounce_force
+			
+		var collision_force = remap(velocity.length(), 0, 1200, 0.15, 1)
+		self.get_parent().get_node("maincam").add_recoil(collision_force)
 
 func spawn_slime():
 	var newslime = slime_scene.instantiate()
