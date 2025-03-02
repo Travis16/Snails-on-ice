@@ -1,6 +1,7 @@
 extends Node2D
 
 var gameScene = preload("res://scenes/snailgame.tscn")
+var playAgainButtonScene = preload("res://scenes/playAgainButton.tscn")
 
 @export var snail_game = null
 
@@ -49,6 +50,15 @@ func _delete_old_game() -> void:
 
 
 func _on_deathtimer_timeout() -> void:
+	
+	snail_game = _get_snailgame()
+	var playAgainButton = playAgainButtonScene.instantiate()
+	playAgainButton.position.x = 823 # middle of screen
+	playAgainButton.position.y = 880 # middle of screen
+	playAgainButton.show()
+	playAgainButton.connect("button_down", _delete_old_game)
+	snail_game.get_node("Labels").add_child(playAgainButton)
 	print(str(Time.get_time_string_from_system()) + ": Timer complete")
 	print(str(Time.get_time_string_from_system()) + ": game restart begun")
-	_delete_old_game()
+	
+	#_delete_old_game()

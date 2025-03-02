@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://daoheth6rrw1a"]
+
+[ext_resource type="FontFile" uid="uid://y8y1q7nhnvk4" path="res://assets/fonts/tronStyle.ttf" id="1_myec4"]
+
+[node name="playAgainButton" type="Button"]
+offset_left = -148.0
+offset_top = -25.0
+offset_right = 156.0
+offset_bottom = 36.0
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_myec4")
+theme_override_font_sizes/font_size = 60
+text = "Play Again"
+flat = true
