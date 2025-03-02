@@ -26,15 +26,27 @@ func _physics_process(delta: float) -> void:
 	var p1 = get_parent().get_node("p1")
 	var p2 = get_parent().get_node("p2")
 	
+	var zoom_x
+	var zoom_y
+	var position_target = Vector2(0,0)
 	
 	if p1 != null and p2 != null:
-		self.global_position = (p1.global_position + p2.global_position) / 2
-	
-		var zoom_x = 960/absf(p1.global_position.x-p2.global_position.x)
-		var zoom_y = 540/absf(p1.global_position.y-p2.global_position.y)
+		position_target = (p1.global_position + p2.global_position) / 2
+		zoom_x = 960/absf(p1.global_position.x-p2.global_position.x)
+		zoom_y = 540/absf(p1.global_position.y-p2.global_position.y)
+	elif p1 != null:
+		position_target = p1.global_position
+		zoom_x = 1
+		zoom_y = 1
+	elif p2 != null:
+		position_target = p2.global_position
+		zoom_x = 1
+		zoom_y = 1
 		
-		newzoom = max(min(min(zoom_x, zoom_y), 1.5), 0.4)
-		self.zoom = lerp(zoom, Vector2(newzoom, newzoom), delta * 2)
+	self.global_position = lerp(global_position, position_target, delta * 10)
+	newzoom = max(min(min(zoom_x, zoom_y), 1.5), 0.4)
+	self.zoom = lerp(zoom, Vector2(newzoom, newzoom), delta * 2)
+	
 		
 	if recoil:
 		recoil = max(recoil - decay * delta, 0)

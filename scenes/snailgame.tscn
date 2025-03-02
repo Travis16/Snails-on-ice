@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://mn4te3wtsa2j"]
 
-[ext_resource type="Script" path="res://scripts/gameRunner.gd" id="1_kkof0"]
+[ext_resource type="Script" path="res://scripts/snailgame.gd" id="1_kkof0"]
 [ext_resource type="Script" path="res://scripts/camscript.gd" id="2_8ydak"]
 [ext_resource type="FontFile" uid="uid://y8y1q7nhnvk4" path="res://assets/fonts/tronStyle.ttf" id="2_dnfc7"]
 
