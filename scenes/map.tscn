@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtnm20pfyqmh0"]
+[gd_scene load_steps=10 format=3 uid="uid://dtnm20pfyqmh0"]
 
 [ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/snails/Snail_Red.png" id="1_1ama4"]
 [ext_resource type="Texture2D" uid="uid://bbo5g02ddt6pc" path="res://assets/snails/Snail_Orange.png" id="2_h7t16"]
 [ext_resource type="Texture2D" uid="uid://cc05tui820eh2" path="res://assets/snails/Snail_Green.png" id="3_kds0j"]
 [ext_resource type="Texture2D" uid="uid://dhjvd0tvdf1qr" path="res://assets/snails/Snail_Blue.png" id="4_rjvcd"]
+[ext_resource type="Texture2D" uid="uid://ciqaa0o350a8o" path="res://assets/tiles/ice_texture.png" id="5_o3bqb"]
+[ext_resource type="Texture2D" uid="uid://dv3jowsue7vh" path="res://assets/snails/Snail_Shell_Red.png" id="6_iivce"]
+[ext_resource type="Texture2D" uid="uid://ddn2su6wry220" path="res://assets/tiles/ice_wall.png" id="7_bjlfr"]
+[ext_resource type="Texture2D" uid="uid://f28p38d2ok3k" path="res://assets/tiles/ice_corner.png" id="8_hlrki"]
+[ext_resource type="Texture2D" uid="uid://cw71vhrdngydt" path="res://assets/tiles/snow.png" id="9_5xhja"]
 
 [node name="Map" type="Node2D"]
 
@@ -26,3 +31,113 @@ texture = ExtResource("3_kds0j")
 [node name="SnailBlue" type="Sprite2D" parent="."]
 position = Vector2(27, 71)
 texture = ExtResource("4_rjvcd")
+
+[node name="IceTexture" type="Sprite2D" parent="."]
+position = Vector2(198, 245)
+texture = ExtResource("5_o3bqb")
+
+[node name="SnailShellRed" type="Sprite2D" parent="."]
+position = Vector2(198, 245)
+texture = ExtResource("6_iivce")
+
+[node name="IceWall" type="Sprite2D" parent="."]
+position = Vector2(198, 229)
+texture = ExtResource("7_bjlfr")
+
+[node name="IceWall2" type="Sprite2D" parent="."]
+position = Vector2(182, 245)
+rotation = -1.5708
+texture = ExtResource("7_bjlfr")
+
+[node name="IceWall3" type="Sprite2D" parent="."]
+position = Vector2(214, 245)
+rotation = 1.5708
+texture = ExtResource("7_bjlfr")
+
+[node name="IceWall4" type="Sprite2D" parent="."]
+position = Vector2(198, 261)
+rotation = 3.14159
+texture = ExtResource("7_bjlfr")
+
+[node name="IceCorner" type="Sprite2D" parent="."]
+position = Vector2(182, 229)
+texture = ExtResource("8_hlrki")
+
+[node name="IceCorner2" type="Sprite2D" parent="."]
+position = Vector2(214, 229)
+rotation = 1.5708
+texture = ExtResource("8_hlrki")
+
+[node name="IceCorner3" type="Sprite2D" parent="."]
+position = Vector2(182, 261)
+rotation = 4.71239
+texture = ExtResource("8_hlrki")
+
+[node name="IceCorner4" type="Sprite2D" parent="."]
+position = Vector2(214, 261)
+rotation = 3.14159
+texture = ExtResource("8_hlrki")
+
+[node name="Snow" type="Sprite2D" parent="."]
+position = Vector2(166, 229)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow2" type="Sprite2D" parent="."]
+position = Vector2(166, 245)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow3" type="Sprite2D" parent="."]
+position = Vector2(166, 261)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow4" type="Sprite2D" parent="."]
+position = Vector2(166, 277)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow5" type="Sprite2D" parent="."]
+position = Vector2(182, 277)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow6" type="Sprite2D" parent="."]
+position = Vector2(198, 277)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow7" type="Sprite2D" parent="."]
+position = Vector2(214, 277)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow8" type="Sprite2D" parent="."]
+position = Vector2(230, 277)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow9" type="Sprite2D" parent="."]
+position = Vector2(230, 261)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow10" type="Sprite2D" parent="."]
+position = Vector2(230, 245)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow11" type="Sprite2D" parent="."]
+position = Vector2(230, 229)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow12" type="Sprite2D" parent="."]
+position = Vector2(166, 213)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow13" type="Sprite2D" parent="."]
+position = Vector2(182, 213)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow14" type="Sprite2D" parent="."]
+position = Vector2(198, 213)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow15" type="Sprite2D" parent="."]
+position = Vector2(214, 213)
+texture = ExtResource("9_5xhja")
+
+[node name="Snow16" type="Sprite2D" parent="."]
+position = Vector2(230, 213)
+texture = ExtResource("9_5xhja")
