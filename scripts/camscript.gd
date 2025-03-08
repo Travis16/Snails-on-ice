@@ -6,6 +6,7 @@ var recoil_exponent = 2
 var decay = 0.8 
 var max_roll = 0.1
 var max_offset = Vector2(100, 75)
+var position_target
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	var zoom_x
 	var zoom_y
-	var position_target = Vector2(0,0)
+	 
 	
 	if p1 != null and p2 != null:
 		position_target = (p1.global_position + p2.global_position) / 2
@@ -50,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	self.global_position = lerp(global_position, position_target, delta * 10)
 	newzoom = max(min(min(zoom_x, zoom_y), 1.5), 0.4)
 	self.zoom = lerp(zoom, Vector2(newzoom, newzoom), delta * 2)
+	position_target = Vector2(0,0)
 	
 		
 	if recoil:

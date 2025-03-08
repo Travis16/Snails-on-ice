@@ -50,7 +50,10 @@ func _physics_process(delta: float) -> void:
 	
 func _death(player) -> void: 
 	isdead = true
-	gui_labels.get_node("game_over").text = "%s Wins!" % player.displayName # This line never needs to change as long as the function call is ordered properly
+	if player == null:
+		gui_labels.get_node("game_over").text = "Draw!"
+	else:
+		gui_labels.get_node("game_over").text = "%s Wins!" % player.displayName # This line never needs to change as long as the function call is ordered properly
 	gui_labels.get_node("game_over").show()
 	print(str(Time.get_time_string_from_system()) + ": Death registered")
 	
