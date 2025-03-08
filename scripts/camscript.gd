@@ -42,6 +42,10 @@ func _physics_process(delta: float) -> void:
 		position_target = p2.global_position
 		zoom_x = 1
 		zoom_y = 1
+	else:
+		zoom_x = 1
+		zoom_y = 1
+		
 		
 	self.global_position = lerp(global_position, position_target, delta * 10)
 	newzoom = max(min(min(zoom_x, zoom_y), 1.5), 0.4)
