@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mn4te3wtsa2j"]
+[gd_scene load_steps=6 format=3 uid="uid://mn4te3wtsa2j"]
 
 [ext_resource type="Script" path="res://scripts/snailgame.gd" id="1_kkof0"]
 [ext_resource type="Script" path="res://scripts/camscript.gd" id="2_8ydak"]
 [ext_resource type="FontFile" uid="uid://y8y1q7nhnvk4" path="res://assets/fonts/tronStyle.ttf" id="2_dnfc7"]
+[ext_resource type="Texture2D" uid="uid://blk586d1bajsq" path="res://assets/tiles/Snail map.png" id="4_1ev21"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8guhd"]
 
@@ -79,3 +80,9 @@ horizontal_alignment = 2
 
 [node name="maincam" type="Camera2D" parent="."]
 script = ExtResource("2_8ydak")
+
+[node name="SnailMap" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1920, 1080)
+scale = Vector2(2.02083, 2.03704)
+texture = ExtResource("4_1ev21")

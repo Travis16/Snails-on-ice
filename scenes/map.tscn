@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtnm20pfyqmh0"]
+[gd_scene load_steps=11 format=3 uid="uid://dtnm20pfyqmh0"]
 
 [ext_resource type="Texture2D" uid="uid://bcgrgymeo1p7l" path="res://assets/snails/Snail_Red.png" id="1_1ama4"]
 [ext_resource type="Texture2D" uid="uid://bbo5g02ddt6pc" path="res://assets/snails/Snail_Orange.png" id="2_h7t16"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddn2su6wry220" path="res://assets/tiles/ice_wall.png" id="7_bjlfr"]
 [ext_resource type="Texture2D" uid="uid://f28p38d2ok3k" path="res://assets/tiles/ice_corner.png" id="8_hlrki"]
 [ext_resource type="Texture2D" uid="uid://cw71vhrdngydt" path="res://assets/tiles/snow.png" id="9_5xhja"]
+[ext_resource type="Texture2D" uid="uid://blk586d1bajsq" path="res://assets/tiles/Snail map.png" id="10_40en7"]
 
 [node name="Map" type="Node2D"]
 
@@ -141,3 +142,8 @@ texture = ExtResource("9_5xhja")
 [node name="Snow16" type="Sprite2D" parent="."]
 position = Vector2(230, 213)
 texture = ExtResource("9_5xhja")
+
+[node name="SnailMap" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(960, 540)
+texture = ExtResource("10_40en7")
