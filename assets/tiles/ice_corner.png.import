@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv6kdtc80jif2"
-path="res://.godot/imported/Snail_Shell_Green.png-f063d55807795bb6e7da57645dd77e52.ctex"
+uid="uid://f28p38d2ok3k"
+path="res://.godot/imported/ice_corner.png-8a645e60d66d14c0405783d2bce94379.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Snail_Shell_Green.png"
-dest_files=["res://.godot/imported/Snail_Shell_Green.png-f063d55807795bb6e7da57645dd77e52.ctex"]
+source_file="res://assets/tiles/ice_corner.png"
+dest_files=["res://.godot/imported/ice_corner.png-8a645e60d66d14c0405783d2bce94379.ctex"]
 
 [params]
 
