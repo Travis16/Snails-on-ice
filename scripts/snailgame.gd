@@ -49,6 +49,7 @@ func _physics_process(delta: float) -> void:
 			_death($p1)
 	
 func _death(player) -> void: 
+	player.invincible = -1
 	isdead = true
 	if player == null:
 		gui_labels.get_node("game_over").text = "Draw!"
